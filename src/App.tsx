@@ -1,18 +1,15 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
-import {Provider} from "react-redux";
-import {store} from "./store/store";
+import Table from "./components/Table/table";
 
 function App() {
     return (
         <>
-            <Provider store={store}>
-                <Header/>
-                <main className={'main'}>
-                    Table
-                </main>
-            </Provider>
+            <Header/>
+            <main className={'main'}>
+                <Table/>
+            </main>
         </>
     );
 }

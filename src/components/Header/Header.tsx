@@ -4,8 +4,7 @@ import s from './header.module.css'
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 function Header() {
-    // @ts-ignore
-    const file:File | undefined = useTypedSelector(state=>state.egrnInfoData.openFile);
+    const file = useTypedSelector(state=>state.egrnInfoData.openFile);
 
     return (
         <header className={s.header}>

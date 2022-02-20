@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import s from './OpenFileButton.module.css';
 import {useDispatch} from "react-redux";
-import {egrnInfoActions} from "../../store/reucers/egrnInfoReucer";
+import {egrnInfoActions} from "../../store/reucers/egrnInfoReducer";
 import {egrnInfoAsyncActions} from "../../store/asyncActions";
 
 function OpenFileButton() {

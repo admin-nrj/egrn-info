@@ -1,11 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {egrnInfoReucer} from "./reucers/egrnInfoReucer";
+import {egrnInfoReducer} from "./reucers/egrnInfoReducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
-    egrnInfoData: egrnInfoReucer
+    egrnInfoData: egrnInfoReducer,
 })
 
-export type RootReducer = ReturnType<typeof rootReducer>
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof rootReducer>
+// export type RootState = ReturnType<typeof store.getState>
 export const store = createStore(rootReducer, applyMiddleware(thunk));
