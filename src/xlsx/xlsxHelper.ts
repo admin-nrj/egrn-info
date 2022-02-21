@@ -17,10 +17,11 @@ function prepareArray(data: any): Array<CN> {
     let unic = {}
 
     data.forEach((c: any) => {
-        let cn=clearCN(c[Object.keys(c)[0]])
+        let cn=clearCN(c.CN_dirty)
 
         if (cn.length>0)
-            { // @ts-ignore
+            {
+                // @ts-ignore
                 unic[cn]=cn;
             }
     })
@@ -29,20 +30,22 @@ function prepareArray(data: any): Array<CN> {
 }
 
 function clearCN(cn: string): string {
+
     let tmpPart = ""
-    const brPos = cn.indexOf("(");
-    cn = cn.substring(0,brPos)
+    let brPos = cn.indexOf("(");
+    if (brPos>0)
+        cn = cn.substring(0,brPos)
 
     const cnArr = cn.split(":")
     if (cnArr.length < 2)
         return ""
 
     return cnArr.map(cnPart=>{
-        for (let j = 0; j < cnPart.length-1; j++) {
+        for (let j = 0; j < cnPart.length; j++) {
             tmpPart = ""
             let s = cnPart.substring(j,j+1);
             if ( s !== "0") {
-                tmpPart = cnPart.substring(j,cnPart.length - j + 1)
+                tmpPart = cnPart.substring(j,cnPart.length)
                 break;
             }
         }

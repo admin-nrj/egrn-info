@@ -1,15 +1,17 @@
 import {
     CN,
     EgrnActionsEnum,
-    EgrnInfoState,
+    EgrnData,
     EgrnInfoActions,
+    EgrnInfoState,
+    SetAreaDataFromEgrn,
     SetInitialCNArray,
     SetOpenFile
 } from "../../types/egrnInfoReucerTypes";
 
 const defState = {
     openFile: null,
-    areaEgrnData: null
+    areaEgrnData: undefined
 } as  EgrnInfoState
 
 
@@ -19,6 +21,9 @@ export const egrnInfoReducer = (state = defState, action: EgrnInfoActions) : Egr
             return {...state, openFile: action.payload}
         case EgrnActionsEnum.SET_INITIAL_CN_ARRAY:
             return {...state, areaEgrnData: action.payload}
+        case EgrnActionsEnum.SET_AREA_DATA_FROM_EGRN:
+            return {...state, areaEgrnData: state.areaEgrnData?.map(i =>
+                    action.payload.cn===i.cn? action.payload : i)}
         default:
             return state;
     }
@@ -38,5 +43,8 @@ export const egrnInfoActions = {
                 utilType: undefined
             })
         )
-    })
+    }),
+    SetDataFromEGRN(payload: EgrnData):SetAreaDataFromEgrn {
+        return {type : EgrnActionsEnum.SET_AREA_DATA_FROM_EGRN, payload};
+    }
 }

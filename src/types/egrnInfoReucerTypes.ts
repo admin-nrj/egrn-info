@@ -1,11 +1,12 @@
 export enum EgrnActionsEnum {
     SET_OPEN_FILE = 'SET_OPEN_FILE',
-    SET_INITIAL_CN_ARRAY = 'SET_INITIAL_CN_ARRAY'
+    SET_INITIAL_CN_ARRAY = 'SET_INITIAL_CN_ARRAY',
+    SET_AREA_DATA_FROM_EGRN ='SET_AREA_DATA_FROM_EGRN'
 }
 
 export interface EgrnInfoState {
     openFile: File | null,
-    areaEgrnData : Array<EgrnData> | null
+    areaEgrnData : Array<EgrnData> | undefined
 }
 
 
@@ -17,6 +18,11 @@ export interface SetOpenFile {
 export interface SetInitialCNArray {
     type: EgrnActionsEnum.SET_INITIAL_CN_ARRAY
     payload: Array<EgrnData>
+}
+
+export interface SetAreaDataFromEgrn {
+    type: EgrnActionsEnum.SET_AREA_DATA_FROM_EGRN
+    payload: EgrnData
 }
 
 export interface CN {
@@ -32,4 +38,4 @@ export interface EgrnData {
     utilType? : string
 }
 
-export type EgrnInfoActions = SetOpenFile | SetInitialCNArray
+export type EgrnInfoActions = SetOpenFile | SetInitialCNArray | SetAreaDataFromEgrn
