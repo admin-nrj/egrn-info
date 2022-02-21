@@ -2,6 +2,7 @@
 
 This application get specific information from EGRN by cadatral numbers.
 
-## Available Scripts
+## Available features
 
-In the project directory, you can run:
+Import cadastral numbers from Excel file. Save result table to excel file.
+

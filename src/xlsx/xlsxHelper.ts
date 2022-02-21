@@ -1,5 +1,5 @@
 import * as XLSX from "xlsx";
-import {CN} from "../types/egrnInfoReucerTypes";
+import {CN, EgrnData} from "../types/egrnInfoReucerTypes";
 export const xlsxHelper = {
     getArrayFromXlFile: async (file: File): Promise<Array<CN>> => {
 
@@ -10,6 +10,15 @@ export const xlsxHelper = {
         // const data = XLSX.utils.sheet_to_json(ws, {header:1});
         const data = XLSX.utils.sheet_to_json(ws, {header: ["CN_dirty"]});
         return prepareArray(data)
+    },
+    saveXLFileFromArray: async (arr : Array<EgrnData>) =>{
+        let finalHeaders = [{cn:'КН пересечения', parentId:'КН ЕЗП', areaValue:'Площадь', address:'Адрес', areaType:'Категория земель', utilType:'Назначение'}];
+
+        let ws = XLSX.utils.json_to_sheet([...finalHeaders,...arr], {skipHeader:true});
+        let wb = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(wb, ws, "EgrnInfo")
+        let exportFileName = `workbook_egrn_info.xls`;
+        XLSX.writeFile(wb, exportFileName)
     }
 }
 

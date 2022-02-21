@@ -21,7 +21,6 @@ const Table = () => {
     return (
         <table>
             <thead>
-
             <tr>
                 <th>КН пересечения</th>
                 <th>КН ЕЗП</th>
