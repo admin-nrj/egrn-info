@@ -21,7 +21,8 @@ export const egrnInfoAsyncActions={
                     dispatch(egrnInfoActions.SetInitialCNArrayAC(arr))
                     return arr
                 }
-            ).then(
+            )
+                .then(
                 (arr:Array<EgrnData>) => {
                     arr.forEach(async (area:EgrnData)=> {
                             if (area.cn){
@@ -47,6 +48,7 @@ export const egrnInfoAsyncActions={
                     )
                 }
             )
+                .finally(()=>{dispatch(egrnInfoActions.SetIsLoadingAC(false))})
         }
     }
 }

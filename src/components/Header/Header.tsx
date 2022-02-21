@@ -5,15 +5,15 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import SaveExcelButton from "../SaveXLButton/SaveExcelButton";
 
 function Header() {
-    const file = useTypedSelector(state => state.egrnInfoData.openFile);
+    const {openFile} = useTypedSelector(state => state.egrnInfoData);
 
     return (
         <>
             <header className={s.header}>
-                <OpenFileButton/>
+                <OpenFileButton />
                 <SaveExcelButton/>
             </header>
-            <div className={s.label}> {file ? file.name : ''}</div>
+            <div className={s.label}> {openFile ? openFile.name : ''}</div>
         </>
     );
 }

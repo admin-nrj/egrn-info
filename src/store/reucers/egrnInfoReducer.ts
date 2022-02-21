@@ -6,12 +6,14 @@ import {
     EgrnInfoState,
     SetAreaDataFromEgrn,
     SetInitialCNArray,
+    SetIsLoadingType,
     SetOpenFile
 } from "../../types/egrnInfoReucerTypes";
 
 const defState = {
     openFile: null,
-    areaEgrnData: undefined
+    areaEgrnData: undefined,
+    isLoading: false
 } as  EgrnInfoState
 
 
@@ -24,6 +26,8 @@ export const egrnInfoReducer = (state = defState, action: EgrnInfoActions) : Egr
         case EgrnActionsEnum.SET_AREA_DATA_FROM_EGRN:
             return {...state, areaEgrnData: state.areaEgrnData?.map(i =>
                     action.payload.cn===i.cn? action.payload : i)}
+        case EgrnActionsEnum.SET_IS_LOADING:
+            return {...state,isLoading:action.payload}
         default:
             return state;
     }
@@ -46,5 +50,8 @@ export const egrnInfoActions = {
     }),
     SetDataFromEGRN(payload: EgrnData):SetAreaDataFromEgrn {
         return {type : EgrnActionsEnum.SET_AREA_DATA_FROM_EGRN, payload};
+    },
+    SetIsLoadingAC(payload:boolean):SetIsLoadingType{
+        return {type: EgrnActionsEnum.SET_IS_LOADING,payload}
     }
 }

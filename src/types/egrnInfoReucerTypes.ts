@@ -1,12 +1,14 @@
 export enum EgrnActionsEnum {
     SET_OPEN_FILE = 'SET_OPEN_FILE',
     SET_INITIAL_CN_ARRAY = 'SET_INITIAL_CN_ARRAY',
-    SET_AREA_DATA_FROM_EGRN ='SET_AREA_DATA_FROM_EGRN'
+    SET_AREA_DATA_FROM_EGRN ='SET_AREA_DATA_FROM_EGRN',
+    SET_IS_LOADING='SET_IS_LOADING'
 }
 
 export interface EgrnInfoState {
     openFile: File | null,
-    areaEgrnData : Array<EgrnData> | undefined
+    areaEgrnData : Array<EgrnData> | undefined,
+    isLoading :boolean
 }
 
 
@@ -25,6 +27,11 @@ export interface SetAreaDataFromEgrn {
     payload: EgrnData
 }
 
+export interface SetIsLoadingType {
+    type: EgrnActionsEnum.SET_IS_LOADING
+    payload:boolean
+}
+
 export interface CN {
     cn:string
 }
@@ -38,4 +45,4 @@ export interface EgrnData {
     utilType? : string
 }
 
-export type EgrnInfoActions = SetOpenFile | SetInitialCNArray | SetAreaDataFromEgrn
+export type EgrnInfoActions = SetOpenFile | SetInitialCNArray | SetAreaDataFromEgrn | SetIsLoadingType

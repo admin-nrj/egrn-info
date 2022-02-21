@@ -9,11 +9,11 @@ function SaveExcelButton() {
 
     const onClickHandler = () =>{
         if (egrnDataArr)
-            xlsxHelper.saveXLFileFromArray(egrnDataArr).then(r=>console.log("saved"));
+            xlsxHelper.saveXLFileFromArray(egrnDataArr).then(()=>console.log("saved"));
     }
     return (
         <div>
-            <button className={s.openFileButton} onClick={onClickHandler}>Save .xlsx</button>
+            <button disabled={!egrnDataArr} className={s.openFileButton} onClick={onClickHandler}>Save .xlsx</button>
         </div>
     );
 }

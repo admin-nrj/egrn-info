@@ -10,6 +10,7 @@ function OpenFileButton() {
 
     const onClickHandler = () =>{
         inputFile.current?.click();
+
     }
     const onChangeFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
         event.stopPropagation();
@@ -17,8 +18,11 @@ function OpenFileButton() {
         if (event.target.files){
             let file = event.target.files[0];
             dispatch(egrnInfoActions.SetOpenFileAC(file));
-            if (file)
+            if (file){
+                dispatch(egrnInfoActions.SetIsLoadingAC(true));
                 dispatch(egrnInfoAsyncActions.loadExcelData(file));
+            }
+
         }
     }
 
