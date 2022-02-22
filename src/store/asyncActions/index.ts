@@ -39,7 +39,12 @@ export const egrnInfoAsyncActions={
                                     area.areaValue = parseInt(egrnData.feature.attrs.area_value)
                                     area.address = egrnData.feature.attrs.address
                                     area.areaType = staticListData.getAreaType(egrnData.feature.attrs.category_type)
-                                    area.utilType = staticListData.getAreaUtilType(egrnData.feature.attrs.util_code)
+                                    let areaUtilTypeText = staticListData.getAreaUtilType(egrnData.feature.attrs.util_code)
+                                    const areaUtilTypeByDoc = egrnData.feature.attrs.util_by_doc
+                                    if ( areaUtilTypeByDoc && areaUtilTypeText !==  areaUtilTypeByDoc)
+                                        areaUtilTypeText += " " + areaUtilTypeByDoc
+
+                                    area.utilType = areaUtilTypeText
                                     dispatch(egrnInfoActions.SetDataFromEGRN(area))
                                 }
 
